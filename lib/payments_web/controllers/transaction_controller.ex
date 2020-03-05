@@ -47,6 +47,7 @@ defmodule PaymentsWeb.TransactionController do
     case Braintree.Transaction.void(transaction_id) do
       {:ok, transaction} -> {:ok, transaction}
       {:error, error} -> {:error, error}
+      _ -> {:error, ["unexpected error occurred"]}
     end
   end
 
