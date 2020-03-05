@@ -89,7 +89,7 @@ defmodule PaymentsWeb.TransactionController do
   def get_brain_tree_customer(customer_id) do
     case Braintree.Customer.find(customer_id) do
       {:ok, customer} -> {:ok, customer}
-      {:error, error} -> {:error, error}
+      {:error, error} -> {:error, ["error"]}
       _ -> {:error, ["unexpected error occurred"]}
     end
   end
