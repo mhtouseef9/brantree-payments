@@ -56,6 +56,7 @@ defmodule PaymentsWeb.TransactionController do
     case Braintree.Transaction.refund(id, %{amount: amount}) do
       {:ok, transaction} -> {:ok, transaction}
       {:error, error} -> {:error, error}
+      _ -> {:error, ["unexpected error occurred"]}
     end
   end
 
