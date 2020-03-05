@@ -66,7 +66,6 @@ defmodule PaymentsWeb.TransactionController do
     case Braintree.Customer.create(params) do
       {:ok, customer} -> {:ok, customer}
       {:error, error} -> {:error, error}
-      _ -> {:error, "unexpected error occurred"}
     end
   end
   #create payment_method
