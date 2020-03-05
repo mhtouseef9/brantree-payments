@@ -18,6 +18,7 @@ defmodule PaymentsWeb.TransactionController do
     case Braintree.Transaction.sale(params) do
       {:ok, transaction} -> generate_transaction(transaction)
       {:error, error} -> {:error, error}
+      _ -> {:error, ["unexpected error occurred"]}
     end
   end
   defp generate_transaction(params) do
