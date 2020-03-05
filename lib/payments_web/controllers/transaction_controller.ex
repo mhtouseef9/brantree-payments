@@ -9,6 +9,7 @@ defmodule PaymentsWeb.TransactionController do
     case Braintree.ClientToken.generate(params) do
       {:ok, token} -> Payment.create_token(%{client_token: token, cmr_id: cmr_id, branch_id: branch_id})
       {:error, error} -> {:error, error}
+      _ -> {:error, ["unexpected error occurred"]}
     end
   end
 
@@ -89,7 +90,7 @@ defmodule PaymentsWeb.TransactionController do
   def get_brain_tree_customer(customer_id) do
     case Braintree.Customer.find(customer_id) do
       {:ok, customer} -> {:ok, customer}
-      {:error, error} -> {:error, ["error"]}
+      {:error, error} -> {:error, error}
       _ -> {:error, ["unexpected error occurred"]}
     end
   end
